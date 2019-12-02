@@ -6,12 +6,13 @@ const jsonParser = express.json()
 const path = require('path')
 const userScheme = new Schema({ name: String, age: Number }, { versionKey: false })
 const User = mongoose.model('User', userScheme)
-const dbConfig = require('./db');
+const dbConfig = require('./db')
 // app.use(express.static(__dirname + '/public'))
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
-mongoose.connect(dbConfig.url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, function (err) {;
+mongoose.connect(dbConfig.url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, function (err) {
+  ;
 
   if (err) return console.log(err)
   const port = process.env.PORT || 8800
