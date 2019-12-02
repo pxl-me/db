@@ -12,8 +12,6 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
 mongoose.connect(dbConfig.url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, function (err) {
-  ;
-
   if (err) return console.log(err)
   const port = process.env.PORT || 8800
   app.listen(port, function () {
