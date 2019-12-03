@@ -7,19 +7,12 @@ const path = require('path')
 const userScheme = new Schema({ name: String, age: Number }, { versionKey: false })
 const User = mongoose.model('User', userScheme)
 const dbConfig = require('./db')
-<<<<<<< Updated upstream
-=======
 const url = dbConfig.MONGOLAB_URI || process.env.MONGOLAB_URI
->>>>>>> Stashed changes
 // app.use(express.static(__dirname + '/public'))
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
-<<<<<<< Updated upstream
-mongoose.connect(dbConfig.url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, function (err) {
-=======
 mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, function (err) {
->>>>>>> Stashed changes
   if (err) return console.log(err)
   const port = process.env.PORT || 8800
   app.listen(port, function () {
