@@ -7,12 +7,12 @@ const path = require('path')
 const userScheme = new Schema({ name: String, age: Number }, { versionKey: false })
 const User = mongoose.model('User', userScheme)
 const dbConfig = require('./db')
-const url = dbConfig.MONGOLAB_URI || process.env.MONGOLAB_URI
+// const url = dbConfig.MONGOLAB_URI || process.env.MONGOLAB_URI
 // app.use(express.static(__dirname + '/public'))
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
-mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true }, function (err) {
+mongoose.connect(dbConfig.MONGOLAB_URI || process.env.MONGOLAB_URI, { useNewUrlParser: true, useCreateIndex: true }, function (err) {
   if (err) return console.log(err)
   const port = process.env.PORT || 8800
   app.listen(port, function () {
@@ -52,6 +52,7 @@ app.delete('/api/users/:id', function (req, res) {
   const id = req.params.id
   User.findByIdAndDelete(id, function (err, user) {
     if (err) return console.log(err)
+    console.log("user with id was delete " + id)
     res.send(user)
   })
 })
