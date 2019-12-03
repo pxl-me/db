@@ -12,7 +12,7 @@ const url = dbConfig.MONGOLAB_URI || process.env.MONGOLAB_URI
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'))
 })
-mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, function (err) {
+mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true }, function (err) {
   if (err) return console.log(err)
   const port = process.env.PORT || 8800
   app.listen(port, function () {
